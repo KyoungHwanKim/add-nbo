@@ -72,12 +72,12 @@ int main(int argc, char* argv[]) {
 	fclose(fp2);
 
 	//빅 엔디안, 리틀 엔디안 체크.
-	int c = 0x00000001;
-	if ((char *) & c) { // 리틀 엔디안이라면, 변환
+	int i = 0x00000001;
+	char* c = (char*) &i;
+	if (*c & 1) { // 리틀 엔디안이라면, 변환
 		b1 = my_ntohl(b1);
 		b2 = my_ntohl(b2);
 	}
-	
 	printf("%d(0x%x) + %d(0x%x) = %d(0x%x)\n", b1, b1, b2, b2, b1 + b2, b1 + b2);
 	
 	return 0;
