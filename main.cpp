@@ -1,9 +1,9 @@
 #include <stddef.h> // for size_t
 #include <stdint.h> // for uint8_t
 #include <stdio.h> // for printf
-//#include <netinet/in.h>
-#include <Winsock2.h>
-#pragma comment(lib, "ws2_32.lib")
+#include <netinet/in.h>
+//#include <Winsock2.h>
+//#pragma comment(lib, "ws2_32.lib")
 
 void dump(void* p, size_t n) {
 	uint8_t* u8 = static_cast<uint8_t*>(p);
@@ -23,14 +23,14 @@ void write_4660() {
 	dump(&port, sizeof(port));
 }
 
-uint16_t my_ntohs(uint16_t n) { // ¹ÙÀÌÆ® ¿À´õ¸¦ ³×Æ®¿öÅ© ¹ÙÀÌÆ® ¿À´õ·Î ¹Ù²Ù´Â ÇÔ¼ö (16bit ver.)
+uint16_t my_ntohs(uint16_t n) { // ë°”ì´íŠ¸ ì˜¤ë”ë¥¼ ë„¤íŠ¸ì›Œí¬ ë°”ì´íŠ¸ ì˜¤ë”ë¡œ ë°”ê¾¸ëŠ” í•¨ìˆ˜ (16bit ver.)
 	// uint16_t n1 = (n & 0xFF00) >> 8; // 0x0034
 	// uint16_t n2 = (n & 0x00FF) << 8; // 0x1200
 	// return n1 | n2; //0x1234
 	return (n & 0xFF00) >> 8 | (n & 0x00FF) << 8;
 }
 
-uint32_t my_ntohl(uint32_t n) { // ¹ÙÀÌÆ® ¿À´õ¸¦ ³×Æ®¿öÅ© ¹ÙÀÌÆ® ¿À´õ·Î ¹Ù²Ù´Â ÇÔ¼ö (32bit ver.) 
+uint32_t my_ntohl(uint32_t n) { // ë°”ì´íŠ¸ ì˜¤ë”ë¥¼ ë„¤íŠ¸ì›Œí¬ ë°”ì´íŠ¸ ì˜¤ë”ë¡œ ë°”ê¾¸ëŠ” í•¨ìˆ˜ (32bit ver.)
 	return (n & 0xff000000) >> 24 | (n & 0x00ff0000) >> 8 | (n & 0x0000ff00) << 8 | (n & 0x000000ff) << 24;
 }
 
@@ -57,9 +57,9 @@ int main(int argc, char* argv[]) {
 	FILE* fp1 = fopen(argv[1], "r");
 	FILE* fp2 = fopen(argv[2], "r");
 	
-	// ¿¹¿ÜÃ³¸®
+	// ì˜ˆì™¸ì²˜ë¦¬
 	if (fp1 == NULL || fp2 == NULL) {
-		printf("ÆÄÀÏ ÀÐ±â Áß ¿À·ù");
+		printf("íŒŒì¼ ì½ê¸° ì¤‘ ì˜¤ë¥˜");
 		return 0;
 	}
 	
